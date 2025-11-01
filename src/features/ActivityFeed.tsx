@@ -1,5 +1,5 @@
 import React from 'react'
-import { useSuiClient } from '@mysten/dapp-kit'
+import { useSuiClient, useCurrentAccount, ConnectButton } from '@mysten/dapp-kit'
 import { APP_CONFIG } from '../config'
 
 type ActivityItem = {
@@ -52,6 +52,7 @@ function extractUrl(fields: any): string {
 }
 
 export default function ActivityFeed() {
+  const account = useCurrentAccount()
   const client = useSuiClient()
   const [activities, setActivities] = React.useState<ActivityItem[]>([])
   const [loading, setLoading] = React.useState(true)
@@ -60,6 +61,15 @@ export default function ActivityFeed() {
     let cancelled = false
 
     async function loadActivities() {
+      // Require wallet connection to view activity
+      if (!account) {
+        if (!cancelled) {
+          setLoading(false)
+          setActivities([])
+        }
+        return
+      }
+
       if (!APP_CONFIG.PACKAGE_ID || !APP_CONFIG.MODULE) {
         if (!cancelled) {
           setLoading(false)
@@ -355,7 +365,22 @@ export default function ActivityFeed() {
       cancelled = true
       clearInterval(interval)
     }
-  }, [client])
+  }, [account, client])
+
+  // Show connect wallet message if no account
+  if (!account) {
+    return (
+      <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 shadow-xl shadow-black/30 backdrop-blur">
+        <h2 className="text-3xl font-extrabold mb-6">Activity Feed</h2>
+        <div className="text-center py-12">
+          <div className="text-5xl mb-4">🔒</div>
+          <div className="text-lg font-semibold mb-2">Wallet Not Connected</div>
+          <div className="text-gray-400 mb-6">Please connect your wallet to view activity history.</div>
+          <ConnectButton />
+        </div>
+      </div>
+    )
+  }
 
   if (loading && activities.length === 0) {
     return (

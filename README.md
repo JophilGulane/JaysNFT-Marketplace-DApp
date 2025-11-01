@@ -4,7 +4,7 @@ A premium, modern NFT marketplace built on the Sui blockchain. Discover, collect
 
 ## 🌐 Live Demo
 
-**Deployed Application:** [Add your deployed link here]
+**Deployed Application:** [JaysNFT Marketplace](https://jaysnft.vercel.app/)
 <!-- Example: https://your-deployed-app.vercel.app -->
 
 ---
@@ -122,14 +122,13 @@ A premium, modern NFT marketplace built on the Sui blockchain. Discover, collect
 
 ## 📄 License
 
-[Add your license here]
+**MIT**
 
 ---
 
 ## 🔗 Links
 
-- **Live Demo**: [Add your deployed link]
-- **Documentation**: [Add docs link if available]
+- **Live Demo**: [JaysNFT Marketplace](https://jaysnft.vercel.app/)
 - **Sui Blockchain**: https://sui.io
 - **Pinata IPFS**: https://pinata.cloud
 

@@ -398,10 +398,10 @@ export default function NftDetailPage() {
   // Render loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] pt-16">
-        <div className="container mx-auto px-6 py-12 text-center">
-          <div className="w-8 h-8 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <div className="text-gray-400">Loading NFT details…</div>
+      <div className="min-h-screen bg-[#0a0a0a] pt-12 sm:pt-16">
+        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12 text-center">
+          <div className="w-6 h-6 sm:w-8 sm:h-8 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin mx-auto mb-3 sm:mb-4"></div>
+          <div className="text-sm sm:text-base text-gray-400">Loading NFT details…</div>
         </div>
       </div>
     )
@@ -410,15 +410,15 @@ export default function NftDetailPage() {
   // Render error state
   if (error || !nftData || !nftInfo) {
     return (
-      <div className="min-h-screen bg-[#0a0a0a] pt-16">
-        <div className="container mx-auto px-6 py-12">
-          <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 text-center">
-            <div className="text-5xl mb-4">❌</div>
-            <h2 className="text-2xl font-extrabold mb-2">NFT Not Found</h2>
-            <p className="text-gray-400 mb-4">{error || 'This NFT might have been burned or transferred.'}</p>
+      <div className="min-h-screen bg-[#0a0a0a] pt-12 sm:pt-16">
+        <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="bg-gray-900/50 border border-gray-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center">
+            <div className="text-4xl sm:text-5xl mb-3 sm:mb-4">❌</div>
+            <h2 className="text-xl sm:text-2xl font-extrabold mb-2">NFT Not Found</h2>
+            <p className="text-sm sm:text-base text-gray-400 mb-4">{error || 'This NFT might have been burned or transferred.'}</p>
             <button
               onClick={() => navigate(-1)}
-              className="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg font-semibold"
+              className="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg font-semibold text-sm sm:text-base"
             >
               Go Back
             </button>
@@ -430,30 +430,30 @@ export default function NftDetailPage() {
 
   // Render NFT details
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pt-16">
-      <div className="max-w-6xl mx-auto px-6 py-10 md:py-14 relative">
+    <div className="min-h-screen bg-[#0a0a0a] pt-12 sm:pt-16">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 py-4 sm:py-6 md:py-10 lg:py-14 relative">
         <button
           onClick={() => navigate(-1)}
-          className="absolute -top-2 left-0 bg-gray-800/70 hover:bg-gray-700 text-sm px-3 py-1.5 rounded-full border border-gray-700 shadow-md"
+          className="absolute -top-1 sm:-top-2 left-2 sm:left-0 bg-gray-800/70 hover:bg-gray-700 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-1.5 rounded-full border border-gray-700 shadow-md z-10"
         >
           ← Back
         </button>
 
-        <div className="bg-gray-900/50 border border-gray-800 rounded-2xl p-6 md:p-8 shadow-xl shadow-black/30 backdrop-blur">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">{nftInfo.name}</h1>
-            <div className="flex items-center justify-center gap-2 mt-2">
-              <div className="text-gray-400">{nftInfo.description || '—'}</div>
+        <div className="bg-gray-900/50 border border-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl shadow-black/30 backdrop-blur">
+          <div className="text-center mb-4 sm:mb-6 md:mb-8">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight">{nftInfo.name}</h1>
+            <div className="flex items-center justify-center gap-2 mt-1 sm:mt-2 flex-wrap">
+              <div className="text-xs sm:text-sm text-gray-400">{nftInfo.description || '—'}</div>
               {isOwner && !listing && (
                 <button
                   onClick={() => {
                     setNewDescription(nftInfo.description || '')
                     setEditDescriptionOpen(true)
                   }}
-                  className="ml-2 text-indigo-400 hover:text-indigo-300 transition-colors"
+                  className="text-indigo-400 hover:text-indigo-300 transition-colors"
                   title="Edit description"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
                 </button>
@@ -461,26 +461,26 @@ export default function NftDetailPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10 items-start">
             {/* Image */}
-            <div className="rounded-xl overflow-hidden bg-gray-900/60 border border-gray-700">
+            <div className="rounded-lg sm:rounded-xl overflow-hidden bg-gray-900/60 border border-gray-700">
               {nftInfo.imageUrl ? (
-                <img src={nftInfo.imageUrl} alt={nftInfo.name} className="w-full h-[460px] object-cover" />
+                <img src={nftInfo.imageUrl} alt={nftInfo.name} className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[460px] object-cover" />
               ) : (
-                <div className="w-full h-[460px] flex items-center justify-center text-gray-600">No image</div>
+                <div className="w-full h-[250px] sm:h-[350px] md:h-[400px] lg:h-[460px] flex items-center justify-center text-gray-600 text-xs sm:text-sm">No image</div>
               )}
             </div>
 
             {/* Details */}
             <div className="flex flex-col h-full">
-              <div className="space-y-4 mb-6">
+              <div className="space-y-3 sm:space-y-4 mb-4 sm:mb-6">
                 <div>
-                  <div className="text-xs uppercase tracking-wide text-gray-400 mb-1.5">Object ID</div>
-                  <div className="flex items-center gap-2 bg-gray-800/60 border border-gray-700 rounded-lg px-3 py-2">
-                    <code className="text-xs font-mono text-gray-300 flex-1">{truncateAddress(id)}</code>
+                  <div className="text-[10px] sm:text-xs uppercase tracking-wide text-gray-400 mb-1 sm:mb-1.5">Object ID</div>
+                  <div className="flex items-center gap-1.5 sm:gap-2 bg-gray-800/60 border border-gray-700 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2">
+                    <code className="text-[10px] sm:text-xs font-mono text-gray-300 flex-1 truncate">{truncateAddress(id)}</code>
                     <button
                       onClick={() => copyToClipboard(id, 'Object ID')}
-                      className="flex-shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded border border-indigo-500 transition"
+                      className="flex-shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded border border-indigo-500 transition"
                     >
                       Copy
                     </button>
@@ -488,30 +488,30 @@ export default function NftDetailPage() {
                 </div>
 
                 <div>
-                  <div className="text-xs uppercase tracking-wide text-gray-400 mb-1.5">Owner's Address</div>
-                  <div className="flex items-center gap-2 bg-gray-800/60 border border-gray-700 rounded-lg px-3 py-2">
+                  <div className="text-[10px] sm:text-xs uppercase tracking-wide text-gray-400 mb-1 sm:mb-1.5">Owner's Address</div>
+                  <div className="flex items-center gap-1.5 sm:gap-2 bg-gray-800/60 border border-gray-700 rounded-lg px-2 sm:px-3 py-1.5 sm:py-2">
                     {listing ? (
                       <>
-                        <div className="flex-1">
-                          <div className="text-xs text-gray-300">Escrowed</div>
-                          <code className="text-xs font-mono text-blue-400">{truncateAddress(listing.id)}</code>
-                          <div className="text-xs text-gray-500 mt-0.5">
+                        <div className="flex-1 min-w-0">
+                          <div className="text-[10px] sm:text-xs text-gray-300">Escrowed</div>
+                          <code className="text-[10px] sm:text-xs font-mono text-blue-400 block truncate">{truncateAddress(listing.id)}</code>
+                          <div className="text-[10px] sm:text-xs text-gray-500 mt-0.5">
                             Price: {listing.price ? formatSui(listing.price) : '0'} SUI
                           </div>
                         </div>
                         <button
                           onClick={() => copyToClipboard(listing.id, 'Listing ID')}
-                          className="flex-shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded border border-indigo-500 transition"
+                          className="flex-shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded border border-indigo-500 transition"
                         >
                           Copy
                         </button>
                       </>
                     ) : (
                       <>
-                        <code className="text-xs font-mono text-blue-400 flex-1">{truncateAddress(nftInfo.owner)}</code>
+                        <code className="text-[10px] sm:text-xs font-mono text-blue-400 flex-1 truncate">{truncateAddress(nftInfo.owner)}</code>
                         <button
                           onClick={() => copyToClipboard(nftInfo.owner, 'Owner address')}
-                          className="flex-shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded border border-indigo-500 transition"
+                          className="flex-shrink-0 bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] sm:text-xs font-medium px-2 sm:px-3 py-1 sm:py-1.5 rounded border border-indigo-500 transition"
                         >
                           Copy
                         </button>
@@ -522,13 +522,13 @@ export default function NftDetailPage() {
               </div>
 
               {/* Actions */}
-              <div className="mt-auto pt-6 border-t border-gray-700">
-                <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="mt-auto pt-4 sm:pt-6 border-t border-gray-700">
+                <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center gap-2 sm:gap-3">
                   {listing && canBuy && (
                     <button
                       onClick={handleBuy}
                       disabled={buying || isPending}
-                      className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed px-6 py-2.5 rounded-lg font-semibold shadow-lg shadow-green-500/20 transition"
+                      className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base shadow-lg shadow-green-500/20 transition w-full sm:w-auto"
                     >
                       {buying ? (
                         <>
@@ -548,14 +548,14 @@ export default function NftDetailPage() {
                     href={`https://suiexplorer.com/object/${id}?network=testnet`}
                     target="_blank"
                     rel="noreferrer"
-                    className="bg-gray-700 hover:bg-gray-600 px-4 py-2.5 rounded-lg font-medium transition"
+                    className="bg-gray-700 hover:bg-gray-600 px-4 py-2 sm:py-2.5 rounded-lg font-medium text-sm sm:text-base transition text-center w-full sm:w-auto"
                   >
                     View on Explorer
                   </a>
 
                   <button
                     onClick={() => navigate('/market')}
-                    className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 px-4 py-2.5 rounded-lg font-semibold shadow-lg shadow-indigo-500/20 transition"
+                    className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 px-4 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base shadow-lg shadow-indigo-500/20 transition w-full sm:w-auto"
                   >
                     Go to Marketplace
                   </button>
@@ -563,7 +563,7 @@ export default function NftDetailPage() {
                   {isOwner && !listing && (
                     <button
                       onClick={() => setBurnOpen(true)}
-                      className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 px-4 py-2.5 rounded-lg font-semibold shadow-lg shadow-red-600/20 transition"
+                      className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 px-4 py-2 sm:py-2.5 rounded-lg font-semibold text-sm sm:text-base shadow-lg shadow-red-600/20 transition w-full sm:w-auto"
                     >
                       Burn NFT
                     </button>

@@ -448,11 +448,11 @@ export default function Marketplace({}: MarketplaceProps = {}) {
   }
 
   return (
-    <div className="relative bg-gray-900/50 border border-gray-800 rounded-2xl p-4 md:p-8 shadow-xl shadow-black/30 backdrop-blur pb-20 md:pb-24 w-full">
-      <div className="flex flex-col gap-4 mb-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <h2 className="text-4xl md:text-5xl font-extrabold text-white">Marketplace</h2>
+    <div className="relative bg-gray-900/50 border border-gray-800 rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl shadow-black/30 backdrop-blur pb-12 sm:pb-16 md:pb-24 w-full">
+      <div className="flex flex-col gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <div className="flex items-center gap-2 sm:gap-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white">Marketplace</h2>
             {txState !== 'idle' && (
               <div className="flex items-center gap-2 text-indigo-400 text-sm bg-indigo-500/10 px-3 py-1.5 rounded-full border border-indigo-500/30">
                 <div className="w-3 h-3 border-2 border-indigo-400 border-t-transparent rounded-full animate-spin"></div>
@@ -472,8 +472,8 @@ export default function Marketplace({}: MarketplaceProps = {}) {
         </div>
 
         {/* Search and Filter Bar */}
-        <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-4">
-          <div className="flex flex-col md:flex-row gap-4">
+        <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-3 sm:p-4">
+          <div className="flex flex-col md:flex-row gap-3 sm:gap-4">
             {/* Search */}
             <div className="flex-1">
               <div className="relative">
@@ -496,12 +496,12 @@ export default function Marketplace({}: MarketplaceProps = {}) {
               </div>
             </div>
 
-            {/* Sort Dropdown */}
-            <div className="flex gap-3">
+            {/* Sort and Filter Controls */}
+            <div className="flex flex-wrap gap-2 sm:gap-3">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as SortOption)}
-                className="bg-gray-900/70 border border-gray-700 rounded-lg px-4 py-2.5 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition text-gray-100"
+                className="flex-1 sm:flex-none bg-gray-900/70 border border-gray-700 rounded-lg px-3 sm:px-4 py-2.5 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 transition text-gray-100 text-sm sm:text-base min-w-[140px]"
               >
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
@@ -511,16 +511,16 @@ export default function Marketplace({}: MarketplaceProps = {}) {
 
               <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`px-4 py-2.5 rounded-lg font-medium transition border ${
+                className={`px-3 sm:px-4 py-2.5 rounded-lg font-medium transition border text-sm sm:text-base whitespace-nowrap ${
                   showFilters || minPrice || maxPrice
                     ? 'bg-indigo-600 border-indigo-500 text-white'
                     : 'bg-gray-900/70 border-gray-700 text-gray-300 hover:border-gray-600'
                 }`}
               >
-                <span className="flex items-center gap-2">
+                <span className="flex items-center gap-1.5 sm:gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
+                    className="h-4 w-4 sm:h-5 sm:w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -540,7 +540,7 @@ export default function Marketplace({}: MarketplaceProps = {}) {
                     setMaxPrice('')
                     setShowFilters(false)
                   }}
-                  className="px-4 py-2.5 rounded-lg font-medium transition bg-gray-700 hover:bg-gray-600 text-gray-300 border border-gray-600"
+                  className="px-3 sm:px-4 py-2.5 rounded-lg font-medium transition bg-gray-700 hover:bg-gray-600 text-gray-300 border border-gray-600 text-sm sm:text-base whitespace-nowrap"
                 >
                   Clear
                 </button>
@@ -731,8 +731,9 @@ export default function Marketplace({}: MarketplaceProps = {}) {
           </button>
         </div>
       ) : (
-        <div className="transform scale-[0.8] origin-top" style={{ width: '125%', marginLeft: '-12.5%' }}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch pb-20">
+        <div className="transform md:scale-[0.8] md:origin-top" style={{ width: '100%', marginLeft: '0', marginRight: '0' }}>
+          <div className="md:transform md:scale-[1.25] md:origin-top" style={{ width: '100%' }}>
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 items-stretch pb-8 sm:pb-12 md:pb-20">
           {filteredAndSortedListings.map((l) => {
             const isOwner = account?.address?.toLowerCase() === l.seller?.toLowerCase()
             return (
@@ -743,7 +744,7 @@ export default function Marketplace({}: MarketplaceProps = {}) {
                 speed="5s"
                 style={{ width: '100%', height: '100%' }}
               >
-                <div key={l.listingId} className="bg-gray-800/60 border border-gray-700 rounded-xl overflow-hidden shadow-lg hover:shadow-indigo-500/20 hover:border-gray-600 transition-all flex flex-col h-full">
+                <div key={l.listingId} className="bg-gray-800/60 border border-gray-700 rounded-lg sm:rounded-xl overflow-hidden shadow-lg hover:shadow-indigo-500/20 hover:border-gray-600 transition-all flex flex-col h-full">
                   <div
                     className="cursor-pointer flex flex-col flex-grow"
                     onClick={() => {
@@ -753,17 +754,17 @@ export default function Marketplace({}: MarketplaceProps = {}) {
                     }}
                   >
                     {l.imageUrl ? (
-                      <img src={l.imageUrl} className="w-full h-64 object-cover flex-shrink-0" />
+                      <img src={l.imageUrl} className="w-full h-32 sm:h-48 md:h-64 object-cover flex-shrink-0" />
                     ) : (
-                      <div className="w-full h-64 flex items-center justify-center text-gray-600 bg-gray-900/40 flex-shrink-0">No image</div>
+                      <div className="w-full h-32 sm:h-48 md:h-64 flex items-center justify-center text-gray-600 bg-gray-900/40 flex-shrink-0 text-xs sm:text-sm">No image</div>
                     )}
-                    <div className="p-5 flex-shrink-0">
-                      <div className="font-bold text-lg mb-2">{l.name || 'NFT'}</div>
-                      <div className="text-2xl font-extrabold text-indigo-400">{formatSui(l.price)} SUI</div>
+                    <div className="p-2 sm:p-3 md:p-5 flex-shrink-0">
+                      <div className="font-bold text-xs sm:text-sm md:text-lg mb-1 sm:mb-2 truncate">{l.name || 'NFT'}</div>
+                      <div className="text-base sm:text-xl md:text-2xl font-extrabold text-indigo-400">{formatSui(l.price)} SUI</div>
                     </div>
                   </div>
-                  <div className="px-5 pb-5 flex-shrink-0">
-                    <div className="flex gap-3">
+                  <div className="px-2 sm:px-3 md:px-5 pb-2 sm:pb-3 md:pb-5 flex-shrink-0 min-h-[48px] sm:min-h-[56px] flex items-end">
+                    <div className="flex gap-1.5 sm:gap-2 md:gap-3 w-full">
                       {!isOwner && (
                         <button
                           onClick={(e) => {
@@ -771,11 +772,11 @@ export default function Marketplace({}: MarketplaceProps = {}) {
                             buy(l.listingId, l.price)
                           }}
                           disabled={txState !== 'idle'}
-                          className="inline-flex items-center justify-center gap-2 flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2.5 rounded-lg font-semibold shadow-lg shadow-green-500/20 transition"
+                          className="inline-flex items-center justify-center gap-1 sm:gap-2 flex-1 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-md sm:rounded-lg font-semibold text-xs sm:text-sm md:text-base shadow-lg shadow-green-500/20 transition h-[36px] sm:h-[40px] md:h-[44px]"
                         >
                           {txState === 'buying' && processingId === l.listingId ? (
                             <>
-                              <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                              <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                               <span>Buying...</span>
                             </>
                           ) : (
@@ -785,7 +786,7 @@ export default function Marketplace({}: MarketplaceProps = {}) {
                       )}
                       {isOwner && (
                         <>
-                          <div className="flex-1 bg-gray-700/50 border border-gray-600 rounded-lg px-4 py-2.5 text-center text-sm text-gray-400">
+                          <div className="flex-1 bg-gray-700/50 border border-gray-600 rounded-md sm:rounded-lg px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 text-center text-[10px] sm:text-xs md:text-sm text-gray-400 flex items-center justify-center h-[36px] sm:h-[40px] md:h-[44px]">
                             Your listing
                           </div>
                           <button
@@ -794,11 +795,11 @@ export default function Marketplace({}: MarketplaceProps = {}) {
                               cancel(l.listingId)
                             }}
                             disabled={txState !== 'idle'}
-                            className="inline-flex items-center justify-center gap-2 bg-red-600/80 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed px-4 py-2.5 rounded-lg font-semibold border border-red-500/50 transition"
+                            className="inline-flex items-center justify-center gap-1 sm:gap-2 bg-red-600/80 hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-md sm:rounded-lg font-semibold text-xs sm:text-sm md:text-base border border-red-500/50 transition h-[36px] sm:h-[40px] md:h-[44px]"
                           >
                             {txState === 'canceling' && processingId === l.listingId ? (
                               <>
-                                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                <div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                                 <span>Cancel...</span>
                               </>
                             ) : (
@@ -813,6 +814,7 @@ export default function Marketplace({}: MarketplaceProps = {}) {
               </StarBorder>
             )
           })}
+            </div>
           </div>
         </div>
       )}

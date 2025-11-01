@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import WalletBar from './WalletBar'
+import WalletBar, { BalanceDisplay } from './WalletBar'
+import { ConnectButton } from '@mysten/dapp-kit'
 
 const navItems = [
   { path: '/', label: 'Home', icon: (
@@ -80,9 +81,13 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Mobile: Show only balance, Desktop: Show full WalletBar */}
           <div className="hidden md:flex items-center">
             <WalletBar />
+          </div>
+          <div className="md:hidden">
+            <BalanceDisplay />
           </div>
           {/* Hamburger Menu Button */}
           <button
@@ -115,6 +120,21 @@ export default function Navbar() {
       >
         <div className="bg-gradient-to-b from-black/95 via-black/90 to-black/95 backdrop-blur-xl border-t border-white/10 shadow-2xl">
           <nav className="container mx-auto px-3 py-4 space-y-2">
+            {/* Connect Wallet Button - First Item */}
+            <div className="mb-2 pb-3 border-b border-white/10">
+              <div className="flex items-center justify-center">
+                <ConnectButton
+                  connectText={
+                    <span className="flex items-center gap-2 px-4 py-3 rounded-lg font-medium bg-gradient-to-r from-indigo-600/90 to-purple-600/90 text-white hover:from-indigo-600 hover:to-purple-600 transition-all duration-300">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      <span>Connect Wallet</span>
+                    </span>
+                  }
+                />
+              </div>
+            </div>
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
@@ -135,9 +155,6 @@ export default function Navbar() {
                 <span>{item.label}</span>
               </NavLink>
             ))}
-            <div className="pt-3 mt-3 border-t border-white/10">
-              <WalletBar />
-            </div>
           </nav>
         </div>
       </div>

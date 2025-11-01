@@ -25,17 +25,25 @@ const Tooltip: React.FC<{ text: string; children: React.ReactNode }> = ({ text, 
 const Hero: React.FC = () => {
   const navigate = useNavigate()
   return (
-    <section id="explore" className="text-center flex flex-col justify-start pt-20 md:pt-32 pb-0 mb-0 relative">
-      {/* Animated background glow */}
-      <div className="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none overflow-hidden">
-        <div className="w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute w-64 h-64 bg-pink-500/15 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <section id="explore" className="text-center flex flex-col justify-start pt-20 md:pt-32 pb-8 md:pb-12 mb-0 relative" style={{ overflow: 'hidden' }}>
+      {/* Animated background glow - centered and smaller */}
+      <div className="absolute top-0 left-0 -z-10 pointer-events-none" style={{
+        width: '100vw',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        top: 0,
+        bottom: 0,
+        overflow: 'visible'
+      }}>
+        {/* Much smaller glows centered in the Hero section */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[40vw] h-[40vw] sm:w-[35vw] sm:h-[35vw] md:w-96 md:h-96 bg-indigo-500/10 sm:bg-indigo-500/8 md:bg-indigo-500/6 rounded-full blur-[40px] sm:blur-[60px] md:blur-3xl animate-pulse"></div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[35vw] h-[35vw] sm:w-[30vw] sm:h-[30vw] md:w-72 md:h-72 bg-purple-500/12 sm:bg-purple-500/10 md:bg-purple-500/8 rounded-full blur-[35px] sm:blur-[50px] md:blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[30vw] h-[30vw] sm:w-[25vw] sm:h-[25vw] md:w-64 md:h-64 bg-pink-500/10 sm:bg-pink-500/8 md:bg-pink-500/6 rounded-full blur-[30px] sm:blur-[40px] md:blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
       {/* Main heading */}
-      <div className="relative z-10 space-y-4 mb-6">
-        <h2 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
+      <div className="relative z-10 space-y-4 mb-6 px-4 sm:px-6">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold text-white leading-tight">
           Discover, Collect, & Sell<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-gradient">
             Extraordinary NFTs
@@ -43,14 +51,14 @@ const Hero: React.FC = () => {
         </h2>
 
         {/* Badges */}
-        <div className="flex items-center justify-center gap-3 mt-6">
-          <div className="flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-sm text-indigo-300 hover:bg-indigo-500/20 transition-colors cursor-pointer">
+        <div className="flex items-center justify-center gap-2 sm:gap-3 mt-6 flex-wrap px-4">
+          <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 rounded-full text-xs sm:text-sm text-indigo-300 hover:bg-indigo-500/20 transition-colors cursor-pointer">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
             </svg>
             <span className="font-semibold">Powered by Sui</span>
           </div>
-          <div className="flex items-center gap-2 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full text-sm text-green-300 hover:bg-green-500/20 transition-colors cursor-pointer">
+          <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full text-xs sm:text-sm text-green-300 hover:bg-green-500/20 transition-colors cursor-pointer">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
@@ -59,30 +67,30 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8 relative z-10">
+      <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-6 md:mb-8 relative z-10 px-4">
         Jays NFT Marketplace is the premier destination for digital art and collectibles. Join thousands of creators and collectors.
       </p>
 
       {/* CTA Buttons */}
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-0 relative z-10">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-3 sm:gap-4 mb-0 relative z-10 px-4">
         <button
           onClick={() => navigate('/market')}
-          className="group relative overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-3.5 px-8 rounded-xl shadow-lg shadow-indigo-500/40 hover:shadow-indigo-500/60 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+          className="group relative overflow-hidden bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-3 px-6 sm:py-3.5 sm:px-8 rounded-xl shadow-lg shadow-indigo-500/40 hover:shadow-indigo-500/60 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 w-full sm:w-auto"
         >
           <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer"></span>
           <svg className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
           </svg>
-          <span className="relative z-10">Explore Marketplace</span>
+          <span className="relative z-10 text-sm sm:text-base">Explore Marketplace</span>
         </button>
         <button
           onClick={() => navigate('/mint')}
-          className="group relative overflow-hidden bg-gray-800/60 hover:bg-gray-700/60 border border-gray-700 hover:border-gray-600 text-white font-semibold py-3.5 px-8 rounded-xl shadow-lg shadow-gray-800/40 hover:shadow-gray-700/60 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+          className="group relative overflow-hidden bg-gray-800/60 hover:bg-gray-700/60 border border-gray-700 hover:border-gray-600 text-white font-semibold py-3 px-6 sm:py-3.5 sm:px-8 rounded-xl shadow-lg shadow-gray-800/40 hover:shadow-gray-700/60 transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 w-full max-w-[60%] sm:max-w-none sm:w-auto"
         >
           <svg className="w-5 h-5 transition-transform duration-300 group-hover:rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
-          <span>Mint NFT</span>
+          <span className="text-sm sm:text-base">Mint NFT</span>
         </button>
       </div>
     </section>
@@ -363,13 +371,26 @@ const Footer: React.FC = () => (
 
 export default function Landing() {
   return (
-    <div className="relative min-h-screen bg-[#0a0a0a] text-gray-100" style={{ overflowX: 'visible' }}>
+    <div className="relative min-h-screen bg-[#0a0a0a] text-gray-100" style={{ overflowX: 'visible', margin: 0, padding: 0 }}>
       <ParticleBackground />
       <ShootingStars />
-      <div className="relative z-10">
-        <main className="container mx-auto px-3 py-4 md:px-12 md:py-8">
+      {/* Hero section - full width */}
+      <div className="relative z-10" style={{
+        width: '100vw',
+        position: 'relative',
+        left: '50%',
+        right: '50%',
+        marginLeft: '-50vw',
+        marginRight: '-50vw',
+        marginTop: 0,
+        marginBottom: 0,
+        paddingLeft: 0,
+        paddingRight: 0,
+        overflowX: 'visible'
+      }}>
+        <div className="container mx-auto px-4 sm:px-6 md:px-12 py-6 sm:py-8 md:py-8">
           <Hero />
-        </main>
+        </div>
       </div>
       <NFTGallery />
       <div className="relative z-10">

@@ -418,9 +418,9 @@ export default function ActivityFeed() {
         {activities.map((activity) => (
           <div
             key={activity.id}
-            className="bg-gray-800/60 border border-gray-700 rounded-xl p-4 transition-all"
+            className="bg-gray-800/60 border border-gray-700 rounded-xl p-3 sm:p-4 transition-all overflow-hidden"
           >
-            <div className="flex items-start gap-4">
+            <div className="flex items-start gap-3 sm:gap-4 min-w-0">
               {/* NFT Image */}
               <div className="flex-shrink-0 relative">
                 {activity.nftImageUrl && !activity.isBurned ? (
@@ -449,49 +449,51 @@ export default function ActivityFeed() {
               </div>
 
               {/* Activity Info */}
-              <div className="flex-1 min-w-0">
-                <div className="flex items-start justify-between gap-4 mb-2">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
+              <div className="flex-1 min-w-0 overflow-hidden">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
+                  <div className="flex-1 min-w-0 overflow-hidden">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
                       {activity.type === 'sale' ? (
                         <>
-                          <span className="inline-flex items-center gap-1 bg-green-500/10 text-green-400 text-xs font-semibold px-2 py-1 rounded">
+                          <span className="inline-flex items-center gap-1 bg-green-500/10 text-green-400 text-xs font-semibold px-2 py-1 rounded whitespace-nowrap">
                             <span>💰</span>
                             <span>SOLD</span>
                           </span>
                         </>
                       ) : activity.type === 'cancel' ? (
                         <>
-                          <span className="inline-flex items-center gap-1 bg-red-500/10 text-red-400 text-xs font-semibold px-2 py-1 rounded">
+                          <span className="inline-flex items-center gap-1 bg-red-500/10 text-red-400 text-xs font-semibold px-2 py-1 rounded whitespace-nowrap">
                             <span>❌</span>
                             <span>CANCELLED</span>
                           </span>
                         </>
                       ) : (
                         <>
-                          <span className="inline-flex items-center gap-1 bg-indigo-500/10 text-indigo-400 text-xs font-semibold px-2 py-1 rounded">
+                          <span className="inline-flex items-center gap-1 bg-indigo-500/10 text-indigo-400 text-xs font-semibold px-2 py-1 rounded whitespace-nowrap">
                             <span>📝</span>
                             <span>LISTED</span>
                           </span>
                         </>
                       )}
-                      <span className="text-gray-400 text-xs">{formatTimeAgo(activity.timestamp)}</span>
+                      <span className="text-gray-400 text-xs whitespace-nowrap">{formatTimeAgo(activity.timestamp)}</span>
                     </div>
-                    <div className="font-semibold text-white truncate flex items-center gap-2">
+                    <div className="font-semibold text-white truncate flex items-center gap-2 min-w-0">
                       {activity.isBurned && (
-                        <span className="inline-flex items-center gap-1 bg-red-500/10 text-red-400 text-xs font-semibold px-2 py-0.5 rounded">
+                        <span className="inline-flex items-center gap-1 bg-red-500/10 text-red-400 text-xs font-semibold px-2 py-0.5 rounded flex-shrink-0">
                           <span>🔥</span>
                           <span>BURNED</span>
                         </span>
                       )}
-                      <span className={activity.isBurned ? 'line-through text-gray-500' : ''}>
+                      <span className={`truncate ${activity.isBurned ? 'line-through text-gray-500' : ''}`}>
                         {activity.nftName}
                       </span>
                     </div>
                   </div>
                   {activity.type !== 'cancel' && (
-                    <div className="text-right flex-shrink-0">
-                      <div className="text-lg font-extrabold text-indigo-400">{activity.price} SUI</div>
+                    <div className="text-left sm:text-right flex-shrink-0">
+                      <div className="text-base sm:text-lg font-extrabold text-indigo-400 whitespace-nowrap">
+                        {activity.price} SUI
+                      </div>
                     </div>
                   )}
                 </div>

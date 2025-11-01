@@ -95,40 +95,43 @@ export default function OwnedNfts() {
         </div>
       )}
       {!loading && objects.length > 0 && (
-        <div className="transform scale-[0.8] origin-top" style={{ width: '125%', marginLeft: '-12.5%' }}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {objects.map((o) => {
-            const id = (o.data as any)?.objectId
-            const fields = (o.data as any)?.content?.fields || {}
-            const url = extractUrl(fields)
-            const name = (fields.name as string) || 'Unnamed'
-            const description = (fields.description as string) || ''
-            return (
-              <StarBorder
-                as="div"
-                className="w-full"
-                color="cyan"
-                speed="5s"
-                style={{ width: '100%', height: '100%' }}
-              >
-                <div key={id} className="bg-gray-800/60 border border-gray-700 rounded-xl overflow-hidden hover:border-indigo-500 hover:shadow-indigo-500/20 hover:shadow-2xl transition-all duration-300 group flex flex-col h-full">
-                  <button onClick={() => navigate(`/nft/${id}`)} className="w-full text-left flex flex-col h-full">
-                    {url ? (
-                      <img src={url} className="w-full h-80 md:h-96 object-cover group-hover:scale-[1.02] transition-transform duration-500 flex-shrink-0" />
-                    ) : (
-                      <div className="w-full h-80 md:h-96 flex items-center justify-center text-gray-600 bg-gray-900/40 flex-shrink-0">No image</div>
-                    )}
-                    <div className="p-5 text-center bg-gradient-to-b from-gray-900/30 to-transparent flex-shrink-0">
-                      <div className="text-xl font-extrabold tracking-tight text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)] mb-2">{name}</div>
-                      <div className="text-sm text-gray-300/90 line-clamp-2 min-h-[3rem]">
-                        {description || '\u00A0'}
+        <div className="transform md:scale-[0.8] md:origin-top" style={{ width: '100%', marginLeft: '0', marginRight: '0' }}>
+          <div className="md:transform md:scale-[1.25] md:origin-top" style={{ width: '100%' }}>
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 md:gap-6 items-stretch">
+            {objects.map((o) => {
+              const id = (o.data as any)?.objectId
+              const fields = (o.data as any)?.content?.fields || {}
+              const url = extractUrl(fields)
+              const name = (fields.name as string) || 'Unnamed'
+              const description = (fields.description as string) || ''
+              return (
+                <StarBorder
+                  key={id}
+                  as="div"
+                  className="w-full"
+                  color="cyan"
+                  speed="5s"
+                  style={{ width: '100%', height: '100%' }}
+                >
+                  <div className="bg-gray-800/60 border border-gray-700 rounded-lg sm:rounded-xl overflow-hidden hover:border-indigo-500 hover:shadow-indigo-500/20 hover:shadow-2xl transition-all duration-300 group flex flex-col h-full">
+                    <button onClick={() => navigate(`/nft/${id}`)} className="w-full text-left flex flex-col h-full">
+                      {url ? (
+                        <img src={url} className="w-full h-32 sm:h-48 md:h-80 lg:h-96 object-cover group-hover:scale-[1.02] transition-transform duration-500 flex-shrink-0" />
+                      ) : (
+                        <div className="w-full h-32 sm:h-48 md:h-80 lg:h-96 flex items-center justify-center text-gray-600 bg-gray-900/40 flex-shrink-0 text-xs sm:text-sm">No image</div>
+                      )}
+                      <div className="p-2 sm:p-3 md:p-5 text-center bg-gradient-to-b from-gray-900/30 to-transparent flex-shrink-0">
+                        <div className="text-xs sm:text-sm md:text-xl font-extrabold tracking-tight text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)] mb-1 sm:mb-2 truncate">{name}</div>
+                        <div className="text-[10px] sm:text-xs md:text-sm text-gray-300/90 line-clamp-2 min-h-[2rem] sm:min-h-[3rem]">
+                          {description || '\u00A0'}
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                </div>
-              </StarBorder>
-            )
-          })}
+                    </button>
+                  </div>
+                </StarBorder>
+              )
+            })}
+            </div>
           </div>
         </div>
       )}

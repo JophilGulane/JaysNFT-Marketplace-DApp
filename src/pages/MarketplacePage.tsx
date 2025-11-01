@@ -9,31 +9,32 @@ export default function MarketplacePage() {
   return (
     <div className="relative min-h-[calc(100vh-4rem)] w-full">
       <ParticleBackground id="tsparticles-marketplace" />
-      <div className="relative z-10 mx-auto px-3 py-4 md:px-12 md:py-8 w-full" style={{ maxWidth: '1920px' }}>
+      <div className="relative z-10 mx-auto px-4 sm:px-6 py-4 sm:py-6 md:px-12 md:py-8 w-full" style={{ maxWidth: '1920px' }}>
         {/* Tab Navigation */}
-        <div className="mb-6 flex items-center gap-2 bg-gray-900/50 border border-gray-800 rounded-xl p-1 w-fit">
+        <div className="mb-4 sm:mb-6 flex items-center gap-2 bg-gray-900/50 border border-gray-800 rounded-xl p-1 w-full sm:w-fit">
           <button
             onClick={() => setActiveTab('marketplace')}
-            className={`px-6 py-2.5 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 flex items-center gap-2 ${
+            className={`flex-1 sm:flex-none px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 flex items-center justify-center gap-2 ${
               activeTab === 'marketplace'
                 ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
                 : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
             }`}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
-            Marketplace
+            <span className="hidden sm:inline">Marketplace</span>
+            <span className="sm:hidden">Market</span>
           </button>
           <button
             onClick={() => setActiveTab('activity')}
-            className={`px-6 py-2.5 rounded-lg font-semibold text-sm md:text-base transition-all duration-300 flex items-center gap-2 ${
+            className={`flex-1 sm:flex-none px-4 sm:px-6 py-2 sm:py-2.5 rounded-lg font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 flex items-center justify-center gap-2 ${
               activeTab === 'activity'
                 ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
                 : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
             }`}
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Activity
